@@ -48,31 +48,35 @@ docker run -p 3000:3000 helloworld
 ```shell
 minikube status
 ```
-2. Create a local docker registry by running
+2. Enable minikube addons registry
+```shell
+minikube addons enable registry
+```
+3. Create a local docker registry by running
 ```shell
 docker run -d -p 5000:5000 --restart=always --name registry registry:2 
 ```
-3. Use docker daemon inside minikube
+4. Use docker daemon inside minikube
 ```shell
 eval $(minikube docker-env)  
 ```
-3. Build and tag helloworld image
+5. Build and tag helloworld image
 ```shell
 docker build -t localhost:5000/helloworld .
 ```
-3. Push image to local repository
+6. Push image to local repository
 ```shell
 docker push localhost:5000/helloworld
 ```
-4. Deploy helloworld kubernetes objects
+7. Deploy helloworld kubernetes objects
 ```shell
 kubectl apply -f deploy/helloworld.yaml
 ```
-5. Start minikube tunnel in another shell to access the application
+8. Start minikube tunnel in another shell to access the application
 ```shell
 minikube tunnel
 ```
-6. To access the application `curl http://127.0.0.1:3000`
+9. To access the application `curl http://127.0.0.1:3000`
 
 ## Test minikube deployment
 1. Install [bats-core](https://bats-core.readthedocs.io/en/stable/installation.html)
