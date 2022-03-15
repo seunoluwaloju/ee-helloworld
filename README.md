@@ -73,3 +73,7 @@ kubectl apply -f deploy/helloworld.yaml
 minikube tunnel
 ```
 6. To access the application `curl http://127.0.0.1:3000`
+
+## Test minikube deployment
+1. Install [bats-core](https://bats-core.readthedocs.io/en/stable/installation.html)
+2. Execute tests by running `bats tests`
