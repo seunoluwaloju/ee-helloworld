@@ -1,25 +1,21 @@
 
 
-## Local Development
+## Local Development Setup
 ### Pre-requisites
 1. Install [python3](https://www.python.org/downloads/release/python-3910/)
-2. Install virtualenv - ``
-python3 -m pip install virtualenv
-``
+2. Install virtualenv - `python3 -m pip install virtualenv`
+
 
 ### Setup virtual environment
-```shell
-python3 -m pip install --user virtualenv
-```
-3. Create virtual environment
+1. Create virtual environment
 ```shell
 python3 -m venv venv
 ```
-4. Activate virtual environment
+2. Activate virtual environment
 ```shell
 source venv/bin/activate
 ```
-5. Install required libraries
+3. Install required libraries
 ```shell
 pip3 install -r requirements.txt
 ```
@@ -43,7 +39,7 @@ docker build -t helloworld .
 ```
 2. Run the docker container with the following command
 ```shell
-docker run -d -p 3000:3000 helloworld
+docker run -p 3000:3000 helloworld
 ```
 3. Go to http://127.0.0.1:3000 and verify you see `Hello Equal Experts`
 
@@ -56,9 +52,13 @@ minikube status
 ```shell
 docker run -d -p 5000:5000 --restart=always --name registry registry:2 
 ```
-3. Re-tag helloworld image
+3. Use docker daemon inside minikube
 ```shell
-docker tag helloworld localhost:5000/helloworld
+eval $(minikube docker-env)  
+```
+3. Build and tag helloworld image
+```shell
+docker build -t localhost:5000/helloworld .
 ```
 3. Push image to local repository
 ```shell
